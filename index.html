@@ -522,7 +522,7 @@
                                             <InputGroup label="Tu Nombre" name="userName" value={formData.userName} onChange={(e) => setFormData({...formData, userName: e.target.value})} placeholder="Ingresa tu nombre" required />
                                             <div className="pt-4 border-t border-slate-700/50">
                                                 <p className="text-xs text-blue-400 uppercase font-bold mb-4">Datos del Paciente</p>
-                                                <InputGroup label="Nombre y Apellido" name="patientName" value={formData.patientName} onChange={(e) => setFormData({...formData, patientName: e.target.value})} placeholder="Ej. Nico Dema" required />
+                                                <InputGroup label="Nombre y Apellido del Paciente" name="patientName" value={formData.patientName} onChange={(e) => setFormData({...formData, patientName: e.target.value})} placeholder="Ej. Nico Dema" required />
                                                 <div className="mt-4"><InputGroup label="Domicilio (Calle y Altura)" name="address" value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} placeholder="Ej. Montevideo 2420" required /></div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                                                     <InputGroup label="Localidad" name="city" value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} placeholder="Ej. Roldán" required />
