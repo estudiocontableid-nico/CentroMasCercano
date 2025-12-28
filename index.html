@@ -88,7 +88,7 @@
           {"name": "Unidad Medica Renal Rufino SRL","address": "Alem Vieyra 1261","city": "Rufino","province": "Santa Fe"},
           {"name": "Centro de Terapia Renal SRL","address": "25 de Mayo 25","city": "Rafaela","province": "Santa Fe"},
           {"name": "Dra Maria Angelica Giudice","address": "Sarmiento 303","city": "Galvez","province": "Santa Fe"},
-          {"name": "Nefrored SA","address": "Paraguay 40","city": "Rosario","province": "Santa Fe"},
+          {"name": "Nefrored Británico","address": "Paraguay 40","city": "Rosario","province": "Santa Fe"},
           {"name": "CEPAC SA","address": "Hernandarias 46","city": "Ceres","province": "Santa Fe"},
           {"name": "Centro de Hemodialisis Cañada de Gómez","address": "Almte. Brown 832","city": "Cañada De Gomez","province": "Santa Fe"},
           {"name": "Centro Medico Rivadavia SRL","address": "Córdoba 318","city": "Villa Constitucion","province": "Santa Fe"},
@@ -97,7 +97,7 @@
           {"name": "FANEF SRL","address": "CPN Nelsis Muriziasco 1556","city": "San Jorge","province": "Santa Fe"},
           {"name": "Centro Integral de Dialisis SRL","address": "La Paz 1045","city": "Rosario","province": "Santa Fe"},
           {"name": "Nefrosur Terapias Renales","address": "Arijón 145","city": "Rosario","province": "Santa Fe"},
-          {"name": "Nefro Red Norte SRL","address": "Blvd. Rondeau 1365","city": "Rosario","province": "Santa Fe"},
+          {"name": "Nefro Red Norte","address": "Blvd. Rondeau 1365","city": "Rosario","province": "Santa Fe"},
           {"name": "NEFAR SRL","address": "San Juan 3034","city": "Rosario","province": "Santa Fe"},
           {"name": "Servicio de Nefrologia Clinica Ocampo","address": "Blvr. Urquiza 1551","city": "Villa Ocampo","province": "Santa Fe"},
           {"name": "SINEF Servicios de Nefrologia","address": "Pres. Roca 2440","city": "Rosario","province": "Santa Fe"},
@@ -321,7 +321,7 @@
                     <div className="grid grid-cols-2 gap-4 my-4">
                         <div className="bg-slate-900/50 rounded-lg p-3 text-center">
                             <span className="block text-xs text-slate-500 uppercase">Distancia Exacta</span>
-                            <span className="text-xl font-mono text-blue-300">{result.distanceKm.toFixed(2)} km</span>
+                            <span className="text-xl font-mono text-blue-300">{result.distanceKm.toFixed(1)} km</span>
                         </div>
                         <div className="bg-slate-900/50 rounded-lg p-3 text-center">
                             <span className="block text-xs text-slate-500 uppercase">Tiempo Est.</span>
@@ -401,7 +401,7 @@
 
             return (
                 <div className="w-full max-w-6xl mx-auto animate-fade-in-up pb-10">
-                    <h2 className="text-2xl font-bold text-white mb-6 pl-2 border-l-4 border-blue-500">Centros de Diálisis (Local)</h2>
+                    <h2 className="text-2xl font-bold text-white mb-6 pl-2 border-l-4 border-blue-500">Centros de Diálisis</h2>
                     <div className="overflow-x-auto bg-[#1e293b] rounded-xl shadow-xl border border-slate-700">
                         <table className="w-full text-left border-collapse">
                             <thead>
@@ -439,11 +439,11 @@
                 });
             }, []);
 
-            if (loading) return <div className="text-center p-10 text-slate-400">Cargando historial local...</div>;
+            if (loading) return <div className="text-center p-10 text-slate-400">Cargando historial de consultas...</div>;
 
             return (
                 <div className="w-full max-w-6xl mx-auto animate-fade-in-up pb-10">
-                    <h2 className="text-2xl font-bold text-white mb-6 pl-2 border-l-4 border-blue-500">Histórico Local</h2>
+                    <h2 className="text-2xl font-bold text-white mb-6 pl-2 border-l-4 border-blue-500">Histórico de consultas</h2>
                     <div className="overflow-x-auto bg-[#1e293b] rounded-xl shadow-xl border border-slate-700">
                         <table className="w-full text-left border-collapse">
                             <thead>
@@ -522,8 +522,8 @@
                                             <InputGroup label="Tu Nombre" name="userName" value={formData.userName} onChange={(e) => setFormData({...formData, userName: e.target.value})} placeholder="Ingresa tu nombre" required />
                                             <div className="pt-4 border-t border-slate-700/50">
                                                 <p className="text-xs text-blue-400 uppercase font-bold mb-4">Datos del Paciente</p>
-                                                <InputGroup label="Nombre y Apellido" name="patientName" value={formData.patientName} onChange={(e) => setFormData({...formData, patientName: e.target.value})} placeholder="Ej. Juan Pérez" required />
-                                                <div className="mt-4"><InputGroup label="Domicilio (Calle y Altura)" name="address" value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} placeholder="Ej. Av. San Martín 450" required /></div>
+                                                <InputGroup label="Nombre y Apellido" name="patientName" value={formData.patientName} onChange={(e) => setFormData({...formData, patientName: e.target.value})} placeholder="Ej. Nico Dema" required />
+                                                <div className="mt-4"><InputGroup label="Domicilio (Calle y Altura)" name="address" value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} placeholder="Ej. Montevideo 2420" required /></div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                                                     <InputGroup label="Localidad" name="city" value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} placeholder="Ej. Rosario" required />
                                                     <InputGroup label="Provincia" name="province" value={formData.province} onChange={(e) => setFormData({...formData, province: e.target.value})} placeholder="Ej. Santa Fe" required />
