@@ -192,8 +192,8 @@
             }
 
             // PASO 2: Filtrado grueso (Coarse Filter)
-            // Calculamos distancia aproximada usando coordenadas de CIUDAD para todos los centros
-            // Esto es rápido y nos permite elegir los "candidatos" a geolocalizar con precisión.
+            // Calculo distancia aproximada usando coordenadas de CIUDAD para todos los centros
+            // Esto es rápido y me permite elegir los "candidatos" a geolocalizar con precisión.
             setStatus("Analizando centros cercanos...");
             
             let coarseResults = centers.map(center => {
@@ -205,12 +205,12 @@
                 return { center, dist, coarse: true };
             });
 
-            // Ordenamos y tomamos los top 6 candidatos
+            // Ordeno y tomo los top 6 candidatos
             coarseResults.sort((a, b) => a.dist - b.dist);
             const topCandidates = coarseResults.slice(0, 6);
 
             // PASO 3: Geolocalización Fina de Candidatos
-            // Ahora buscamos la lat/lon EXACTA de esos 6 centros
+            // Ahora busco la lat/lon EXACTA de esos 6 centros
             setStatus("Calculando rutas exactas a los centros...");
             
             const finalResults = [];
@@ -222,7 +222,7 @@
                 const c = item.center;
                 let exactCoords = await geocodeAddress(c.address, c.city, c.province);
                 
-                // Si no encontramos la exacta, usamos la de la ciudad (fallback)
+                // Si no encuentro la exacta, uso la de la ciudad (fallback)
                 if (!exactCoords) {
                     const cityKey = c.city.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
                     exactCoords = CITY_COORDINATES[cityKey] || CITY_COORDINATES['rosario'];
@@ -231,7 +231,7 @@
                 const exactDist = calculateDistance(patientCoords.lat, patientCoords.lon, exactCoords.lat, exactCoords.lon);
                 
                 // Url de Maps: Origen Exacto -> Destino Exacto
-                // Usamos la query de texto para el destino para asegurar que Maps encuentre la puerta, 
+                // Uso la query de texto para el destino para asegurarme que Maps encuentre la puerta, 
                 // pero el cálculo de km en la app ya es preciso gracias al paso anterior.
                 const originStr = `${patientCoords.lat},${patientCoords.lon}`;
                 const destQuery = `${cleanAddress(c.address)}, ${c.city}, ${c.province}, Argentina`;
@@ -257,7 +257,7 @@
             // Orden final por distancia exacta
             finalResults.sort((a, b) => a.distanceKm - b.distanceKm);
             
-            // Tomamos top 3
+            // Tomo el top 3
             const top3 = finalResults.slice(0, 3);
             if (top3.length > 0) top3[0].isClosest = true;
 
@@ -525,7 +525,7 @@
                                                 <InputGroup label="Nombre y Apellido" name="patientName" value={formData.patientName} onChange={(e) => setFormData({...formData, patientName: e.target.value})} placeholder="Ej. Nico Dema" required />
                                                 <div className="mt-4"><InputGroup label="Domicilio (Calle y Altura)" name="address" value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} placeholder="Ej. Montevideo 2420" required /></div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                                                    <InputGroup label="Localidad" name="city" value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} placeholder="Ej. Rosario" required />
+                                                    <InputGroup label="Localidad" name="city" value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} placeholder="Ej. Roldán" required />
                                                     <InputGroup label="Provincia" name="province" value={formData.province} onChange={(e) => setFormData({...formData, province: e.target.value})} placeholder="Ej. Santa Fe" required />
                                                 </div>
                                             </div>
